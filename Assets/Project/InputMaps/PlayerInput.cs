@@ -109,7 +109,7 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LockObjective"",
+                    ""name"": ""Strafe"",
                     ""type"": ""Button"",
                     ""id"": ""150de531-1c08-41f6-b000-b0ba9fbd7677"",
                     ""expectedControlType"": """",
@@ -410,18 +410,18 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard Mouse"",
-                    ""action"": ""LockObjective"",
+                    ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""9ffc4796-92ae-470f-910d-ceb467589e42"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""LockObjective"",
+                    ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -491,7 +491,7 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
         m_Default_MoveObjetive = m_Default.FindAction("Move Objetive", throwIfNotFound: true);
         m_Default_Settings = m_Default.FindAction("Settings", throwIfNotFound: true);
         m_Default_Status = m_Default.FindAction("Status", throwIfNotFound: true);
-        m_Default_LockObjective = m_Default.FindAction("LockObjective", throwIfNotFound: true);
+        m_Default_Strafe = m_Default.FindAction("Strafe", throwIfNotFound: true);
         m_Default_ToggleObjective = m_Default.FindAction("ToggleObjective", throwIfNotFound: true);
     }
 
@@ -568,7 +568,7 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_MoveObjetive;
     private readonly InputAction m_Default_Settings;
     private readonly InputAction m_Default_Status;
-    private readonly InputAction m_Default_LockObjective;
+    private readonly InputAction m_Default_Strafe;
     private readonly InputAction m_Default_ToggleObjective;
     public struct DefaultActions
     {
@@ -583,7 +583,7 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
         public InputAction @MoveObjetive => m_Wrapper.m_Default_MoveObjetive;
         public InputAction @Settings => m_Wrapper.m_Default_Settings;
         public InputAction @Status => m_Wrapper.m_Default_Status;
-        public InputAction @LockObjective => m_Wrapper.m_Default_LockObjective;
+        public InputAction @Strafe => m_Wrapper.m_Default_Strafe;
         public InputAction @ToggleObjective => m_Wrapper.m_Default_ToggleObjective;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
@@ -621,9 +621,9 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
             @Status.started += instance.OnStatus;
             @Status.performed += instance.OnStatus;
             @Status.canceled += instance.OnStatus;
-            @LockObjective.started += instance.OnLockObjective;
-            @LockObjective.performed += instance.OnLockObjective;
-            @LockObjective.canceled += instance.OnLockObjective;
+            @Strafe.started += instance.OnStrafe;
+            @Strafe.performed += instance.OnStrafe;
+            @Strafe.canceled += instance.OnStrafe;
             @ToggleObjective.started += instance.OnToggleObjective;
             @ToggleObjective.performed += instance.OnToggleObjective;
             @ToggleObjective.canceled += instance.OnToggleObjective;
@@ -658,9 +658,9 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
             @Status.started -= instance.OnStatus;
             @Status.performed -= instance.OnStatus;
             @Status.canceled -= instance.OnStatus;
-            @LockObjective.started -= instance.OnLockObjective;
-            @LockObjective.performed -= instance.OnLockObjective;
-            @LockObjective.canceled -= instance.OnLockObjective;
+            @Strafe.started -= instance.OnStrafe;
+            @Strafe.performed -= instance.OnStrafe;
+            @Strafe.canceled -= instance.OnStrafe;
             @ToggleObjective.started -= instance.OnToggleObjective;
             @ToggleObjective.performed -= instance.OnToggleObjective;
             @ToggleObjective.canceled -= instance.OnToggleObjective;
@@ -710,7 +710,7 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
         void OnMoveObjetive(InputAction.CallbackContext context);
         void OnSettings(InputAction.CallbackContext context);
         void OnStatus(InputAction.CallbackContext context);
-        void OnLockObjective(InputAction.CallbackContext context);
+        void OnStrafe(InputAction.CallbackContext context);
         void OnToggleObjective(InputAction.CallbackContext context);
     }
 }

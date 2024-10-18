@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LockObjective",
+                    "name": "Strafe",
                     "type": "Button",
                     "id": "150de531-1c08-41f6-b000-b0ba9fbd7677",
                     "expectedControlType": "",
@@ -388,18 +388,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard Mouse",
-                    "action": "LockObjective",
+                    "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "9ffc4796-92ae-470f-910d-ceb467589e42",
-                    "path": "<Gamepad>/leftStick/down",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "LockObjective",
+                    "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

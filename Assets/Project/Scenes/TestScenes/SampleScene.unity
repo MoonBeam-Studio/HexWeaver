@@ -379,13 +379,14 @@ MonoBehaviour:
   eventManager: {fileID: 0}
   cursorPostion: {x: 0, y: 0, z: 0}
   cursor: {fileID: 359077502}
-  _showSphere: {fileID: 1092455795}
+  groundCursor: {fileID: 1092455795}
   targetPosition: {fileID: 1982090565}
   floorLayer:
     serializedVersion: 2
     m_Bits: 8
   Player: {fileID: 0}
   resetPointer: 0
+  IsStrafe: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092455799}
   m_Layer: 0
-  m_Name: TargetGround
+  m_Name: GroundCursor
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1498,8 +1499,13 @@ PrefabInstance:
     - target: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9212e5f673301304f869b0b4437c41e9, type: 2}
     - target: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
         type: 3}
       propertyPath: m_CullingMode
@@ -1542,6 +1548,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406229824}
+    - targetCorrespondingSourceObject: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406229828}
   m_SourcePrefab: {fileID: 100100000, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
 --- !u!1 &1406229816 stripped
 GameObject:
@@ -1595,7 +1605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 96adaa0bb3b356a4b8a7e29bf35b276b,
     type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -1605,10 +1615,34 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1406229820}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: OnControlsChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1406229820}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: OnAbilty_1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bc463e30-3f2b-4851-be46-a2e84f636a15
     m_ActionName: Default/Ability1[/SwitchProControllerHID/leftShoulder,/Keyboard/q]
   - m_PersistentCalls:
@@ -1632,7 +1666,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1406229820}
         m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
         m_MethodName: OnMovement
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1644,7 +1678,19 @@ MonoBehaviour:
     m_ActionId: 93c30ed5-fb90-4497-a431-0ff0fbdc263a
     m_ActionName: Default/Movement[/SwitchProControllerHID/dpad,/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1406229820}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: OnMoveObjetive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3b57d15c-cfe1-4edf-b294-c7d5d3f1e9a6
     m_ActionName: Default/Move Objetive[/SwitchProControllerHID/rightStick,/Mouse/position]
   - m_PersistentCalls:
@@ -1656,11 +1702,35 @@ MonoBehaviour:
     m_ActionId: 83ae0fc9-666d-409f-8a09-12cebd06f160
     m_ActionName: Default/Status[/Keyboard/tab,/SwitchProControllerHID/select]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1406229820}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: OnStrafePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 150de531-1c08-41f6-b000-b0ba9fbd7677
     m_ActionName: Default/LockObjective[/Keyboard/space,/SwitchProControllerHID/leftStick/down]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1406229820}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
+        m_MethodName: OnToggleObjective
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4c655fb9-964b-424f-8c33-9c153857d282
     m_ActionName: Default/ToggleObjective[/SwitchProControllerHID/rightStick/left,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1730,6 +1800,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f074d7ab9c2ca4a9dc029d2b2553e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406229828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406229816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d0fdcb61004a94682d3c93a28db4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1770270943
