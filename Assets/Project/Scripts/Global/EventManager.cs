@@ -20,7 +20,10 @@ public class EventManager : MonoBehaviour
     public delegate void Animations();
     public event Animations OnRunningAnimation;
     public event Animations OnAttackAnimation;
+    public event Animations OnDieAnimation;
 
+    public delegate void EnemyAttack(int damage);
+    public event EnemyAttack OnEnemyAttack;
 
     //Event Invoking
     public void OnChangeControlSchemeEvent(string ControlScheme) => OnChangeControlScheme?.Invoke(ControlScheme);
@@ -28,4 +31,6 @@ public class EventManager : MonoBehaviour
     public void OnStrafeEvent(bool IsStrafe) => OnHoldStrafe?.Invoke(IsStrafe);
     public void OnRunningAnimationEvent() => OnRunningAnimation?.Invoke();
     public void OnAttackAnimationEvent() => OnAttackAnimation?.Invoke();
+    public void OnDieAnimationEvent() => OnDieAnimation?.Invoke();
+    public void OnEnemyAttackEvent(int damage) => OnEnemyAttack?.Invoke(damage);
 }

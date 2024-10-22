@@ -17,6 +17,7 @@ public class PlayerStatsController : MonoBehaviour
     public int maxHealth, currrentHealth;
     public float healthRegen;
     public float _EXPGain;
+    public float dodgeProb;
 
     [SerializeField] PlayerStats playerBaseStats;
     [SerializeField] IceMagicBase iceMagicBase;
@@ -36,6 +37,7 @@ public class PlayerStatsController : MonoBehaviour
         currrentHealth = playerBaseStats.MaxHealth;
         healthRegen = playerBaseStats.HealthRegen;
         _EXPGain = playerBaseStats.EXPGain;
+        dodgeProb = playerBaseStats.DodgeProb;
 
         playerBaseStats.iceMagicBase = iceMagicBase;
     }

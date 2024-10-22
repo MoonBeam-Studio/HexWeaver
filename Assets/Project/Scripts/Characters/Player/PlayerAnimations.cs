@@ -16,15 +16,17 @@ public class PlayerAnimations : MonoBehaviour
 
     private void OnEnable()
     {
-        eventManager = GameObject.FindAnyObjectByType<EventManager>();
+        eventManager = FindAnyObjectByType<EventManager>();
         eventManager.OnRunningAnimation += RunningAnimation;
         eventManager.OnAttackAnimation += AttackAnimation;
+        eventManager.OnDieAnimation += DieAnimation;
     }
 
     private void OnDisable()
     {
         eventManager.OnRunningAnimation -= RunningAnimation;
         eventManager.OnAttackAnimation -= AttackAnimation;
+        eventManager.OnDieAnimation -= DieAnimation;
     }
 
     private void RunningAnimation()
@@ -36,5 +38,10 @@ public class PlayerAnimations : MonoBehaviour
     private void AttackAnimation()
     {
         animatorController.SetTrigger("Attack");
+    }
+
+    private void DieAnimation()
+    {
+        animatorController.SetTrigger("Die");
     }
 }
