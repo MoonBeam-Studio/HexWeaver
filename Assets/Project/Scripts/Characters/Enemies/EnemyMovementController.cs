@@ -22,7 +22,6 @@ public class EnemyMovementController : MonoBehaviour
         while (true)
         {
             agent.SetDestination(player.position);
-            Debug.Log($"Player postion: {agent.destination}");
             yield return new WaitForSeconds(.1f);
         }
     }

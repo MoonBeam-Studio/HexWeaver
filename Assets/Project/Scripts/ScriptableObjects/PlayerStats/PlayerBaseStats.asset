@@ -24,3 +24,5 @@ MonoBehaviour:
   MaxHealth: 20
   HealthRegen: 0
   EXPGain: 1
+  DodgeProb: 0
+  iceMagicBase: {fileID: 0}

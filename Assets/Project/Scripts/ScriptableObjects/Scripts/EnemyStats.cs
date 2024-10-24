@@ -7,4 +7,5 @@ public class EnemyStats : ScriptableObject
 {
     public int MaxHealth;
     public int Attack;
+    public int Speed;
 }

@@ -25,6 +25,9 @@ public class EventManager : MonoBehaviour
     public delegate void EnemyAttack(int damage);
     public event EnemyAttack OnEnemyAttack;
 
+    public delegate void Abilities();
+    public event Abilities OnAttack;
+
     //Event Invoking
     public void OnChangeControlSchemeEvent(string ControlScheme) => OnChangeControlScheme?.Invoke(ControlScheme);
     public void OnToggleObjectiveEvent(bool pointMouse) => OnToggleObjective?.Invoke(pointMouse);
@@ -33,4 +36,5 @@ public class EventManager : MonoBehaviour
     public void OnAttackAnimationEvent() => OnAttackAnimation?.Invoke();
     public void OnDieAnimationEvent() => OnDieAnimation?.Invoke();
     public void OnEnemyAttackEvent(int damage) => OnEnemyAttack?.Invoke(damage);
+    public void OnAttackEvent() => OnAttack?.Invoke();
 }

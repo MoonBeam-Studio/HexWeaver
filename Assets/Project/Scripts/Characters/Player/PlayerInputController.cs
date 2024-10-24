@@ -22,27 +22,34 @@ public class PlayerInputController : MonoBehaviour
 
     public void OnAbilty_1(InputAction.CallbackContext value)
     {
-        if (value.performed)
-        {
-            Debug.Log("Attack");
-            EventManager.Events.OnAttackAnimationEvent();
-        }
+        if (!value.performed) return;
+        
+    }
+    public void OnAbilty_2(InputAction.CallbackContext value)
+    {
+        if (!value.performed) return ;
+        
+    }
+
+    public void OnAbilty_3(InputAction.CallbackContext value)
+    {
+        if (!value.performed) return;
+
+        EventManager.Events.OnAttackAnimationEvent();
+        EventManager.Events.OnAttackEvent();
     }
 
     public void OnMovement(InputAction.CallbackContext value)
     {
         gameObject.GetComponent<PlayerMovementController>().SetMovementInput(value.ReadValue<Vector2>());
 
-        Debug.Log(value.phase);
         if (value.performed && !IsMoving)
         {
-            Debug.Log("Move");
             EventManager.Events.OnRunningAnimationEvent();
             IsMoving = true;
         }
         else if (value.canceled && IsMoving)
         {
-            Debug.Log("Move");
             EventManager.Events.OnRunningAnimationEvent();
             IsMoving = false;
         }
