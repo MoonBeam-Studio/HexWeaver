@@ -15,6 +15,7 @@ public class EnemyHealthController : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Die");
             GetComponent<NavMeshAgent>().enabled = false;
             GetComponent<Collider>().enabled = false;
+            EventManager.Events.OnEnemyDieEvent(transform, GetComponent<IEnemy>().GetStatus());
         }
         return currentHealth;
     }

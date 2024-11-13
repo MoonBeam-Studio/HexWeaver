@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class SkeletonStatsController : EnemyStatsManager, IEnemy
 {
-    private StatusEnum status = StatusEnum.None;
+
+    public StatusEnum status = StatusEnum.None;
 
     public int GetAttack()
     {

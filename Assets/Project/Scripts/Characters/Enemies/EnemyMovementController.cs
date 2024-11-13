@@ -12,7 +12,7 @@ public class EnemyMovementController : MonoBehaviour
     
     void Start()
     {
-        player = GameObject.FindAnyObjectByType<PlayerInput>().transform;
+        player = GameObject.FindFirstObjectByType<PlayerInput>().transform;
         agent = GetComponent<NavMeshAgent>();
         StartCoroutine(GoToPlayer());
     }

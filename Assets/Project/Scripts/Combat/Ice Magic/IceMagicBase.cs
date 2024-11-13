@@ -7,8 +7,11 @@ public class IceMagicBase : MonoBehaviour,IMagicBase
 {
     EventManager events;
     Transform pointer;
+    [Header("Levels")]
     [SerializeField] GameObject proyectile;
-    public int AttackLvl = 1, Ability1LvL = 1, Ability2LvL = 1, UltimateLvL = 1, attackCount = 0;
+    public int AttackLvl = 1, Ability1LvL = 0, Ability2LvL = 0, UltimateLvL = 0;
+    [Header("Other Data")]
+    public int attackCount;
     private float attackRate;
 
     private void Start()
@@ -20,6 +23,7 @@ public class IceMagicBase : MonoBehaviour,IMagicBase
     private void Update()
     {
         attackRate = 1/PlayerStatsController.Stats.attackSpeed;
+        FindFirstObjectByType<IceMagicAbility2>().lvl = Ability2LvL;
     }
 
     public void SetAttackCount() => attackCount++;
@@ -36,7 +40,7 @@ public class IceMagicBase : MonoBehaviour,IMagicBase
 
     private IEnumerator AutoAttack()
     {
-        while (gameObject.activeSelf)
+        while (PlayerStatsController.Stats.currrentHealth > 0)
         {
             yield return new WaitForSeconds(attackRate);
             Attack();

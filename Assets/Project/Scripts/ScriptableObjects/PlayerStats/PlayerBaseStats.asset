@@ -17,7 +17,7 @@ MonoBehaviour:
   Attack: 5
   AttackSpeed: 0.5
   CritRate: 25
-  CritDamage: 1.25
+  CritDamage: 1.5
   BasicCooldown: 1
   UltimateCooldown: 1
   PickUpRange: 3

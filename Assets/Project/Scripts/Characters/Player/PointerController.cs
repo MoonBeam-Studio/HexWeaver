@@ -17,14 +17,14 @@ public class PointerController : MonoBehaviour
 
     private void Start()
     {
-        cursor = GameObject.FindObjectOfType<TargetController>().gameObject;
-        Player = GameObject.FindAnyObjectByType<PlayerInputController>().transform;
+        cursor = GameObject.FindFirstObjectByType<TargetController>().gameObject;
+        Player = GameObject.FindFirstObjectByType<PlayerInputController>().transform;
         targetPosition = GameObject.Find("TargetPosition").transform;
     }
 
     private void OnEnable()
     {
-        eventManager = GameObject.FindObjectOfType<EventManager>();
+        eventManager = GameObject.FindFirstObjectByType<EventManager>();
         eventManager.OnToggleObjective += SetPointCursor;
         eventManager.OnToggleObjective += ResetPoint;
 
