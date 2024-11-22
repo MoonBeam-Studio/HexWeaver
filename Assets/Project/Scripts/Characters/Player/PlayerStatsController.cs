@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,8 @@ public class PlayerStatsController : MonoBehaviour
     public float dodgeProb;
 
     [SerializeField] PlayerStats playerBaseStats;
-    [SerializeField] IceMagicBase iceMagicBase;
+
+    private int savedSpeed;
 
     private void Start()
     {
@@ -39,7 +41,18 @@ public class PlayerStatsController : MonoBehaviour
         _EXPGain = playerBaseStats.EXPGain;
         dodgeProb = playerBaseStats.DodgeProb;
 
-        playerBaseStats.iceMagicBase = iceMagicBase;
+        savedSpeed = speed;
+    }
+
+    public void DisablePlayerMove()
+    {
+        savedSpeed = speed;
+        speed = 0;
+    }
+
+    public void AllowPlayerMove()
+    {
+        speed = savedSpeed;
     }
 
 }

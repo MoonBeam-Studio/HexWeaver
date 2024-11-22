@@ -21,6 +21,8 @@ public class SkeletonStatsController : EnemyStatsManager, IEnemy
 
     public void GetHurt(int damage)
     {
+        Debug.Log($"{gameObject.name} got hurt: {damage}");
+        if (health <= 0) Debug.LogWarning($"Enemy Already dead ({gameObject.name})");
         health = GetComponent<EnemyHealthController>().OnAttacked(damage,health);
     }
 

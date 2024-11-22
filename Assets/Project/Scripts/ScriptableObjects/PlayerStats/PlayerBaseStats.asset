@@ -25,4 +25,3 @@ MonoBehaviour:
   HealthRegen: 0
   EXPGain: 1
   DodgeProb: 0
-  iceMagicBase: {fileID: 0}

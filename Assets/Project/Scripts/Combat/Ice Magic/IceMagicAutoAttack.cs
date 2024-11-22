@@ -24,7 +24,7 @@ public class IceMagicAutoAttack : AutoAttack
             enemyController.SetStatus(StatusEnum.Frost);
             float previousSpeed = enemyController.GetSpeed();
             enemyController.UpdateSpeed((1f-.3f));
-            StartCoroutine(ResetEnemySpeed(enemyController, 0.5f, previousSpeed));
+            StartCoroutine(ResetEnemySpeed(enemyController, 1f, previousSpeed));
         }
         else magicBase.SetAttackCount();
         Level1(enemy);

@@ -1599,7 +1599,7 @@ PrefabInstance:
     - target: {fileID: 3341028378312787500, guid: c6291409786e81d4db31a5242e13a621,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3506214716662667589, guid: c6291409786e81d4db31a5242e13a621,
         type: 3}
@@ -2353,7 +2353,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1406229820}
         m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
-        m_MethodName: OnAbilty_3
+        m_MethodName: OnUltimare
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2363,14 +2363,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 96bd1066-450e-4b58-98db-ca98ab5cf3af
-    m_ActionName: 'Default/Ability3[/SwitchProControllerHID/leftTrigger,/Keyboard/r]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 18e64ba6-04e9-4fca-af52-83a2655d1ec2
-    m_ActionName: 'Default/Ability4[/SwitchProControllerHID/rightTrigger,/Keyboard/q]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c7033130-34f5-4a8c-bdb1-7cf9696bd983
     m_ActionName: 'Default/Ultimate[/Keyboard/shift,/SwitchProControllerHID/leftShoulder,/SwitchProControllerHID/rightShoulder]'
   - m_PersistentCalls:
@@ -2502,7 +2494,6 @@ MonoBehaviour:
   _EXPGain: 0
   dodgeProb: 0
   playerBaseStats: {fileID: 11400000, guid: 2913158bf2d4d2a49b5d90779533ed66, type: 2}
-  iceMagicBase: {fileID: 0}
 --- !u!114 &1406229828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2639,8 +2630,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564620374}
+  - component: {fileID: 1564620375}
   m_Layer: 0
-  m_Name: Global
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2665,6 +2657,18 @@ Transform:
   - {fileID: 1905775229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564620375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564620373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313628832bf59ee48b7e4f526a7c1fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1598957680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,9 +3069,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectile: {fileID: 3018002454190575463, guid: 45f15043417cb0848935f2ffa0d627e6,
     type: 3}
-  AttackLvl: 5
-  Ability1LvL: 0
-  Ability2LvL: 5
+  AttackLvl: 1
+  Ability1LvL: 1
+  Ability2LvL: 0
   UltimateLvL: 0
   attackCount: 0
 --- !u!114 &1975316340
@@ -3082,6 +3086,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae91bcd39b53622498f65848b902c93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceCubePrefab: {fileID: 444761062092719347, guid: f35d59ec6638f95498fd8b91c69ee647,
+    type: 3}
+  iceAreaPrefab: {fileID: 4932088507883938021, guid: 0e5709a7ddb77924090c112cf73bb98a,
+    type: 3}
+  duration: 3
+  slowDuration: 5
+  outerRadius: 20
+  innerRadius: 10
+  baseDamagePercentage: 1
+  healing: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1975316341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3095,6 +3112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvl: 0
+  explosionVFX: {fileID: 8974182106815418758, guid: bd119efad09da424cb8e29b81f434a81,
+    type: 3}
   explosionRadius: 5
   damageScale: 0.75
   enemyLayer:
@@ -3112,6 +3131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea95f77df90a262409c7c1f6a4865c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundPointer: {fileID: 1092455799}
+  VFX: {fileID: 161766660727748596, guid: 05ce920d629922a4eb4795ef7494ce5c, type: 3}
+  effectRadius: 5
+  debuffDuration: 2
+  baseDamage: 0.75
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1982090564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,6 +3271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2073137953}
   - component: {fileID: 2073137954}
+  - component: {fileID: 2073137955}
   m_Layer: 0
   m_Name: EnemySpawnManager
   m_TagString: Untagged
@@ -3286,6 +3314,104 @@ MonoBehaviour:
   CanSpawn: 0
   floor: {fileID: 0}
   mapSize: {x: 0, y: 0}
+--- !u!114 &2073137955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073137952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2f13655c8b296488b0ddc248147829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicEnemies:
+  - enemyPrefab: {fileID: 3341028378312787500, guid: c6291409786e81d4db31a5242e13a621,
+      type: 3}
+    spawnRate: 1
+    spawnDelay: 5
+    timeToSpawn:
+      Min: 0
+      Sec: 3
+  miniBoss: []
+  mediumBoss: []
+  FinalBoss: []
+  EnemySpawner: {fileID: 6888831687884243136, guid: 58831d12db06fd643ba714fc40906954,
+    type: 3}
+  MinPlayerDistance: 5
+  floor: {fileID: 0}
+  mapSize: {x: 0, y: 0}
+  CanSpawn: 1
+  i: 0
+--- !u!1001 &5442389938219752712
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974182106815418758, guid: bd119efad09da424cb8e29b81f434a81,
+        type: 3}
+      propertyPath: m_Name
+      value: Ice Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd119efad09da424cb8e29b81f434a81, type: 3}
 --- !u!1001 &7043754989507904148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3307,7 +3433,7 @@ PrefabInstance:
     - target: {fileID: 3341028378312787500, guid: c6291409786e81d4db31a5242e13a621,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3506214716662667589, guid: c6291409786e81d4db31a5242e13a621,
         type: 3}
@@ -3381,3 +3507,4 @@ SceneRoots:
   - {fileID: 7043754989507904148}
   - {fileID: 764007634}
   - {fileID: 248370847}
+  - {fileID: 5442389938219752712}

@@ -46,24 +46,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Ability3"",
-                    ""type"": ""Button"",
-                    ""id"": ""96bd1066-450e-4b58-98db-ca98ab5cf3af"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability4"",
-                    ""type"": ""Button"",
-                    ""id"": ""18e64ba6-04e9-4fca-af52-83a2655d1ec2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Ultimate"",
                     ""type"": ""Button"",
                     ""id"": ""c7033130-34f5-4a8c-bdb1-7cf9696bd983"",
@@ -169,50 +151,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard Mouse"",
                     ""action"": ""Ability2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25c47d0c-4f56-4f49-9960-15d2f6b10909"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Ability3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d8145a0-1e90-4934-bb5d-c0a360783fa9"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard Mouse"",
-                    ""action"": ""Ability3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ed580b7c-9315-4345-997e-2e94befbc9ee"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Ability4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6386be0b-d0a1-4b14-89b4-feb2f174888d"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard Mouse"",
-                    ""action"": ""Ability4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -484,8 +422,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Ability1 = m_Default.FindAction("Ability1", throwIfNotFound: true);
         m_Default_Ability2 = m_Default.FindAction("Ability2", throwIfNotFound: true);
-        m_Default_Ability3 = m_Default.FindAction("Ability3", throwIfNotFound: true);
-        m_Default_Ability4 = m_Default.FindAction("Ability4", throwIfNotFound: true);
         m_Default_Ultimate = m_Default.FindAction("Ultimate", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
         m_Default_MoveObjetive = m_Default.FindAction("Move Objetive", throwIfNotFound: true);
@@ -561,8 +497,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
     private List<IDefaultActions> m_DefaultActionsCallbackInterfaces = new List<IDefaultActions>();
     private readonly InputAction m_Default_Ability1;
     private readonly InputAction m_Default_Ability2;
-    private readonly InputAction m_Default_Ability3;
-    private readonly InputAction m_Default_Ability4;
     private readonly InputAction m_Default_Ultimate;
     private readonly InputAction m_Default_Movement;
     private readonly InputAction m_Default_MoveObjetive;
@@ -576,8 +510,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
         public DefaultActions(@PlayerActionsInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Ability1 => m_Wrapper.m_Default_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Default_Ability2;
-        public InputAction @Ability3 => m_Wrapper.m_Default_Ability3;
-        public InputAction @Ability4 => m_Wrapper.m_Default_Ability4;
         public InputAction @Ultimate => m_Wrapper.m_Default_Ultimate;
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
         public InputAction @MoveObjetive => m_Wrapper.m_Default_MoveObjetive;
@@ -600,12 +532,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
             @Ability2.started += instance.OnAbility2;
             @Ability2.performed += instance.OnAbility2;
             @Ability2.canceled += instance.OnAbility2;
-            @Ability3.started += instance.OnAbility3;
-            @Ability3.performed += instance.OnAbility3;
-            @Ability3.canceled += instance.OnAbility3;
-            @Ability4.started += instance.OnAbility4;
-            @Ability4.performed += instance.OnAbility4;
-            @Ability4.canceled += instance.OnAbility4;
             @Ultimate.started += instance.OnUltimate;
             @Ultimate.performed += instance.OnUltimate;
             @Ultimate.canceled += instance.OnUltimate;
@@ -637,12 +563,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
             @Ability2.started -= instance.OnAbility2;
             @Ability2.performed -= instance.OnAbility2;
             @Ability2.canceled -= instance.OnAbility2;
-            @Ability3.started -= instance.OnAbility3;
-            @Ability3.performed -= instance.OnAbility3;
-            @Ability3.canceled -= instance.OnAbility3;
-            @Ability4.started -= instance.OnAbility4;
-            @Ability4.performed -= instance.OnAbility4;
-            @Ability4.canceled -= instance.OnAbility4;
             @Ultimate.started -= instance.OnUltimate;
             @Ultimate.performed -= instance.OnUltimate;
             @Ultimate.canceled -= instance.OnUltimate;
@@ -703,8 +623,6 @@ public partial class @PlayerActionsInput: IInputActionCollection2, IDisposable
     {
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
-        void OnAbility3(InputAction.CallbackContext context);
-        void OnAbility4(InputAction.CallbackContext context);
         void OnUltimate(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnMoveObjetive(InputAction.CallbackContext context);

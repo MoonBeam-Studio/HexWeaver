@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class IceMagicAbility2 : MonoBehaviour
 {
     [Header("Settings")]
     public int lvl;
+    [SerializeField] GameObject explosionVFX;
     [SerializeField] float explosionRadius = 5;
     [SerializeField] float damageScale = .75f;
 
@@ -71,6 +73,8 @@ public class IceMagicAbility2 : MonoBehaviour
     {
         if (enemyStatus != StatusEnum.Frost) return;
 
+        GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
+        StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
         Debug.Log("Explosion!!");
         Debug.Log($"Affected enemies: {hitEnemies.Length}");
@@ -85,6 +89,8 @@ public class IceMagicAbility2 : MonoBehaviour
     {
         if (enemyStatus != StatusEnum.Frost) return;
 
+        GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
+        StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
         Debug.Log("Explosion!!");
         Debug.Log($"Affected enemies: {hitEnemies.Length}");
@@ -99,6 +105,8 @@ public class IceMagicAbility2 : MonoBehaviour
     {
         if (enemyStatus != StatusEnum.Frost) return;
 
+        GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
+        StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
         Debug.Log("Explosion!!");
         Debug.Log($"Affected enemies: {hitEnemies.Length}");
@@ -123,5 +131,11 @@ public class IceMagicAbility2 : MonoBehaviour
         }
 
         return (int)Mathf.Round(damage);
+    }
+
+    private IEnumerator destroyVFX(GameObject vfx)
+    {
+        yield return new WaitForSeconds(4);
+        Destroy(vfx);
     }
 }

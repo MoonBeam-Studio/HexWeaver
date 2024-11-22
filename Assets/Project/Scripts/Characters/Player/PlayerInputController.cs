@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
     private PlayerActionsInput inputActions;
     private string previousControlScheme = null;
     private bool IsPointerToMouse = true, IsMoving;
+    private IMagicBase magic;
 
     private void Awake()
     {
@@ -20,23 +21,26 @@ public class PlayerInputController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
+    private void Start()
+    {
+        magic = GameObject.Find("AttacksAndAbilities").GetComponent<IMagicBase>();
+    }
+
     public void OnAbilty_1(InputAction.CallbackContext value)
     {
         if (!value.performed) return;
-        
+        magic.Ability1();
     }
     public void OnAbilty_2(InputAction.CallbackContext value)
     {
         if (!value.performed) return ;
-        
+        magic.Ability2();
     }
 
-    public void OnAbilty_3(InputAction.CallbackContext value)
+    public void OnUltimare(InputAction.CallbackContext value)
     {
         if (!value.performed) return;
-
-        EventManager.Events.OnAttackAnimationEvent();
-        EventManager.Events.OnAttackEvent();
+        magic.Ultimate();
     }
 
     public void OnMovement(InputAction.CallbackContext value)
