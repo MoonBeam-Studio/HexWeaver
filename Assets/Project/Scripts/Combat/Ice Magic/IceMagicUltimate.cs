@@ -10,24 +10,34 @@ public class IceMagicUltimate : MonoBehaviour
     [Header("Settings")]
     [SerializeField] GameObject iceCubePrefab;
     [SerializeField] GameObject iceAreaPrefab;
-    [SerializeField] float duration = 3f, slowDuration = 5f;
-    [SerializeField] int outerRadius = 20, innerRadius = 10;
     [SerializeField] float baseDamagePercentage = 1, healing = 10;
+    [SerializeField] int outerRadius = 20, innerRadius = 10;
+    [SerializeField] float duration = 3f, slowDuration = 5f;
+    [SerializeField] bool IsPassive = false;
+    [SerializeField] private int maxCD;
     [SerializeField] LayerMask enemyLayer;
+    public float currentCD { get; private set; }
 
     GameObject iceCube, iceArea;
     float activationTime;
     Transform player;
-    bool enemyDoTActive, playerHealingActive;
+    [SerializeField] bool OnCooldown = false;
 
+    void Start()
+    {
+        if (IsPassive) currentCD = 0;
+    }
 
     private void Update()
     {
         player = FindAnyObjectByType<PlayerInputController>().transform;
     }
 
+    public float GetMaxCD() => maxCD/PlayerStatsController.Stats.ultimateCooldown;
+
     public void Cast(int lvl)
     {
+        if (OnCooldown) return;
         switch (lvl)
         {
             case 1: 
@@ -144,16 +154,15 @@ public class IceMagicUltimate : MonoBehaviour
 
     private IEnumerator EndUltimate(Collider[] enemies, float[] previousSpeed)
     {
-        Debug.Log(duration);
+        
         activationTime = Time.time;
         yield return new WaitForSeconds(duration);
-        Debug.Log(duration);
+        yield return null;
+        StartCoroutine(Cooldown());
+
         SetEffects(false);
         FindFirstObjectByType<IceMagicBase>().SetAbilitiesEnabled(true);
         PlayerStatsController.Stats.AllowPlayerMove();
-        //Collider[] empty = { };
-        //if (enemyDoTActive) StopCoroutine(EnemyDoT(empty));
-        //if (playerHealingActive) StopCoroutine(PlayerHeal());
 
         yield return new WaitForSeconds(slowDuration - duration);
         for(int i = 0; i <= enemies.Length; i++)
@@ -161,28 +170,27 @@ public class IceMagicUltimate : MonoBehaviour
             IEnemy enemyController = enemies[i].GetComponent<IEnemy>();
             enemyController.UpdateSpeed(previousSpeed[i]);
         }
-        StopAllCoroutines();
+
+        Collider[] n = { };
+        //StopCoroutine(EnemyDoT(n));
+        //StopCoroutine(PlayerHeal());
     }
 
     private IEnumerator EnemyDoT(Collider[] enemies)
     {
-        enemyDoTActive = true;
         while (Time.time <= duration+activationTime)
         {
             foreach (var enemy in enemies)
             {
-                Debug.LogWarning($"{enemy.name} DoT inflicted");
                 IEnemy enemyController = enemy.GetComponent<IEnemy>();
                 enemyController.GetHurt((int)Mathf.Round(PlayerStatsController.Stats.attack * baseDamagePercentage + .01f));
             }
             yield return new WaitForSeconds(1);
         }
-        Debug.Log("Dot ended");
     }
 
     private IEnumerator PlayerHeal()
     {
-        playerHealingActive = true;
         while (Time.time <= duration + activationTime)
         {
             yield return new WaitForSeconds(.5f);
@@ -191,5 +199,17 @@ public class IceMagicUltimate : MonoBehaviour
 
             yield return new WaitForSeconds(.5f);
         }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        OnCooldown = true;
+        currentCD = maxCD;
+        while (currentCD > 0f)
+        {
+            currentCD -= Time.deltaTime;
+            yield return null;
+        }
+        OnCooldown = false;
     }
 }

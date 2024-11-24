@@ -6,20 +6,21 @@ public class IceMagicAbility2 : MonoBehaviour
     [Header("Settings")]
     public int lvl;
     [SerializeField] GameObject explosionVFX;
-    [SerializeField] float explosionRadius = 5;
     [SerializeField] float damageScale = .75f;
-
-    [Header("Enemy Detection Settings")]
+    [SerializeField] float explosionRadius = 5;
+    [SerializeField] bool IsPassive = false;
+    [SerializeField] int maxCD = 0;
     [SerializeField] LayerMask enemyLayer;
 
     private Transform enemyTransform;
     private StatusEnum enemyStatus;
     private EventManager EventManager;
+    public float currentCD { get; private set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if(IsPassive) currentCD = 0;
     }
 
     private void OnEnable()
@@ -39,9 +40,10 @@ public class IceMagicAbility2 : MonoBehaviour
         FindFirstObjectByType<IceMagicAutoAttack>().SetAbility2Lvl(lvl);
     }
 
+    public float GetMaxCD() => maxCD/PlayerStatsController.Stats.basicCooldown;
+
     private void EnemyDied(Transform _enemyTransform, StatusEnum _enemyStatus)
     {
-        Debug.Log("Enemy Died");
         enemyStatus = _enemyStatus;
         enemyTransform = _enemyTransform;
 
@@ -76,8 +78,6 @@ public class IceMagicAbility2 : MonoBehaviour
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
-        Debug.Log("Explosion!!");
-        Debug.Log($"Affected enemies: {hitEnemies.Length}");
         if (hitEnemies.Length <= 0) return;
         foreach (var enemy in hitEnemies)
         {
@@ -92,8 +92,6 @@ public class IceMagicAbility2 : MonoBehaviour
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
-        Debug.Log("Explosion!!");
-        Debug.Log($"Affected enemies: {hitEnemies.Length}");
         if (hitEnemies.Length <= 0) return;
         foreach (var enemy in hitEnemies)
         {
@@ -108,8 +106,6 @@ public class IceMagicAbility2 : MonoBehaviour
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
-        Debug.Log("Explosion!!");
-        Debug.Log($"Affected enemies: {hitEnemies.Length}");
         if (hitEnemies.Length <= 0) return;
         foreach (var enemy in hitEnemies)
         {
@@ -123,7 +119,6 @@ public class IceMagicAbility2 : MonoBehaviour
     {
         float damage = PlayerStatsController.Stats.attack;
         damage = damage * damageScale;
-        Debug.Log(CanCrit);
         if (CanCrit)
         {
             int n = Random.Range(0, 100);
@@ -138,4 +133,6 @@ public class IceMagicAbility2 : MonoBehaviour
         yield return new WaitForSeconds(4);
         Destroy(vfx);
     }
+
+
 }

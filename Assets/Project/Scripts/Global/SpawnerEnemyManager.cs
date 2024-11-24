@@ -80,12 +80,10 @@ public class SpawnerEnemyManager : MonoBehaviour
 
     IEnumerator SpawnEnemy(int index)
     {
-        Debug.Log("Enemy wave spawned");
         while (true)
         {
             for (int n = 0; n <= Random.Range(1, basicEnemies[index].spawnRate); n++)
             {
-                Debug.Log("Enemy Spawned");
                 Vector3 spawnPos = SpawnPos();
                 GameObject enemySpawner = Instantiate(EnemySpawner, spawnPos, Quaternion.identity);
                 enemySpawner.GetComponent<EnemySpawner>().enemyToSpawn = basicEnemies[index].enemyPrefab;

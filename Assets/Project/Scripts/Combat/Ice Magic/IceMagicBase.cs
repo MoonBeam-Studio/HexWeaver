@@ -4,8 +4,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 
-public class IceMagicBase : MonoBehaviour,IMagicBase
+public class IceMagicBase : MonoBehaviour, IMagicBase
 {
+    public string Name() => "IceMagic";
     EventManager events;
     Transform pointer;
     [Header("Levels")]
@@ -15,17 +16,51 @@ public class IceMagicBase : MonoBehaviour,IMagicBase
     public int attackCount;
     private float attackRate;
     private bool AbilitiesActivated = true;
+    private IceMagicAbility1 ability1;
+    private IceMagicAbility2 ability2;
+    private IceMagicUltimate ultimate;
+    private float ability1CD, ability2CD, ultimateCD;
+    private float ability1MaxCD, ability2MaxCD, ultimateMaxCD;
+
 
     private void Start()
     {
         pointer = GameObject.Find("PointerPos").transform;
         StartCoroutine(AutoAttack());
+
+        ability1 = GetComponent<IceMagicAbility1>();
+        ability2 = GetComponent<IceMagicAbility2>();
+        ultimate = GetComponent<IceMagicUltimate>();
     }
 
     private void Update()
     {
         attackRate = 1/PlayerStatsController.Stats.attackSpeed;
         FindFirstObjectByType<IceMagicAbility2>().lvl = Ability2LvL;
+
+        ability1CD = ability1.currentCD;
+        ability2CD = ability2.currentCD;
+        ultimateCD = ultimate.currentCD;
+        ability1MaxCD = ability1.GetMaxCD();
+        ability2MaxCD = ability2.GetMaxCD();
+        ultimateMaxCD = ultimate.GetMaxCD();
+    }
+
+    public float[] GetCDs()
+    {
+        float[] cds = { ability1CD, ability2CD, ultimateCD };
+        return cds;
+    }
+    public float[] GetMaxCDs()
+    {
+        float[] cds = { ability1MaxCD, ability2MaxCD, ultimateMaxCD };
+        return cds;
+    }
+
+    public int[] GetLevels()
+    {
+        int[] levels = {AttackLvl, Ability1LvL, Ability2LvL, UltimateLvL };
+        return levels;
     }
 
     public void SetAttackCount() => attackCount++;
@@ -43,21 +78,18 @@ public class IceMagicBase : MonoBehaviour,IMagicBase
     public void Ability1()
     {
         if (Ability1LvL == 0 || !AbilitiesActivated) return;
-        GetComponent<IceMagicAbility1>().Cast(Ability1LvL);
+        ability1.Cast(Ability1LvL);
         EventManager.Events.OnAttackAnimationEvent();
-        Debug.Log("Abilty 1");
     }
     public void Ability2()
     {
         if (Ability2LvL == 0) return;
-        Debug.Log("Ability2 is passive only");
     }
     public void Ultimate()
     {
         if (UltimateLvL == 0 || !AbilitiesActivated) return;
-        GetComponent<IceMagicUltimate>().Cast(UltimateLvL);
+        ultimate.Cast(UltimateLvL);
         EventManager.Events.OnAttackAnimationEvent();
-        Debug.Log("Ultimate");
     }
 
     private IEnumerator AutoAttack()

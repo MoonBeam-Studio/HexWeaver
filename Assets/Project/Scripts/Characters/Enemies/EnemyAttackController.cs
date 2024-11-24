@@ -17,7 +17,6 @@ public class EnemyAttackController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collide: {other.name}");
         if (other.CompareTag("Player"))
         {
             IsColliding = true;

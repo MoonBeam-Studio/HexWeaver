@@ -121,8 +121,6 @@ public class IceMagicAutoAttack : AutoAttack
         int n = Random.Range(0, 100);
         if (n <= critRate) TotalDamage = (int)Mathf.Round(PlayerStatsController.Stats.critDamage * damage);
         else TotalDamage = damage;
-        Debug.Log(critRate);
-        Debug.Log(TotalDamage);
         return TotalDamage;
     }
 

@@ -26,7 +26,6 @@ public abstract class AutoAttack : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, .5f, layers) && !HasImpacted)
         {
-            Debug.Log("Hit Enemy");
             HasImpacted = true;
             GameObject enemy = hit.transform.gameObject;
             switch (Level)

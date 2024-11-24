@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -9,19 +10,31 @@ public class IceMagicAbility1 : MonoBehaviour
     [Header("Settings")]
     [SerializeField] Transform groundPointer;
     [SerializeField] GameObject VFX;
-    [SerializeField] 
-    float effectRadius = 5f;
-    [SerializeField] 
-    float debuffDuration = 2;
     [SerializeField][Tooltip("Percentage of the player attack this ability deals")]
     float baseDamage = .75f;
-    [SerializeField] 
+    [SerializeField] float effectRadius = 5f;
+    [SerializeField] float debuffDuration = 2;
+    [SerializeField] bool IsPassive = false;
+    [SerializeField]private int maxCD;
+    [SerializeField]
     LayerMask enemyLayer;
-
+    public float currentCD { get; private set; }
+        
     private int lvl;
+    [SerializeField] private bool OnCooldown;
+
+    void Start()
+    {
+        if (IsPassive) currentCD = 0;
+    }
+
+    public float GetMaxCD() => maxCD/PlayerStatsController.Stats.basicCooldown;
 
     public void Cast(int lvl)
     {
+        if (OnCooldown) return;
+        StartCoroutine(Cooldown());
+
         this.lvl = lvl;
         GameObject vfx = Instantiate(VFX,groundPointer.position, Quaternion.Euler(new Vector3(0,0,0)));
         StartCoroutine(DestroyVFX(vfx));
@@ -36,7 +49,6 @@ public class IceMagicAbility1 : MonoBehaviour
         {
             IEnemy enemyController = enemy.GetComponent<IEnemy>();
             enemyController.GetHurt((int)Mathf.Round(PlayerStatsController.Stats.attack * baseDamage));
-            Debug.Log($"Enemy hit: {enemy.name}");
             if (lvl == 1) continue;
             enemyController.SetStatus(StatusEnum.Frost);
             if (lvl < 3) continue;
@@ -64,5 +76,17 @@ public class IceMagicAbility1 : MonoBehaviour
             if (prevSpeeds.Length >= 1) continue;
             enemyController.UpdateSpeed(prevSpeeds[Array.IndexOf(enemies, enemy)]);
         }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        OnCooldown = true;
+        currentCD = maxCD;
+        while (currentCD > 0f)
+        {
+            currentCD -= Time.deltaTime;
+            yield return null;
+        }
+        OnCooldown = false;
     }
 }
