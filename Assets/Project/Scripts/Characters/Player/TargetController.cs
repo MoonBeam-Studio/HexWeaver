@@ -13,7 +13,7 @@ public class TargetController : MonoBehaviour
 
     private void OnEnable()
     {
-        eventManager = GameObject.FindObjectOfType<EventManager>();
+        eventManager = GameObject.FindFirstObjectByType<EventManager>();
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.pivot = new Vector2(.5f,0);
         eventManager.OnChangeControlScheme += ControlSchemeChanged;

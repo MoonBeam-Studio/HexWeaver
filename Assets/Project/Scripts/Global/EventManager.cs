@@ -34,6 +34,9 @@ public class EventManager : MonoBehaviour
     public delegate void LevelUp();
     public event LevelUp OnLevelUp;
 
+    public delegate void StopGame(bool stop);
+    public event StopGame OnStopGame;
+
     //Event Invoking
     public void OnChangeControlSchemeEvent(string ControlScheme) => OnChangeControlScheme?.Invoke(ControlScheme);
     public void OnToggleObjectiveEvent(bool pointMouse) => OnToggleObjective?.Invoke(pointMouse);
@@ -45,4 +48,5 @@ public class EventManager : MonoBehaviour
     public void OnAttackEvent() => OnAttack?.Invoke();
     public void OnEnemyDieEvent(Transform transform, StatusEnum status) => OnEnemyDie?.Invoke(transform, status);
     public void OnLevelUpEvent() => OnLevelUp?.Invoke();
+    public void OnStopGameEvent(bool stop) => OnStopGame?.Invoke(stop);
 }

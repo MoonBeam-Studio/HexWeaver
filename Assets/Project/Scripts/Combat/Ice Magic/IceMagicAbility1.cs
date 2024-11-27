@@ -81,7 +81,7 @@ public class IceMagicAbility1 : MonoBehaviour
     private IEnumerator Cooldown()
     {
         OnCooldown = true;
-        currentCD = maxCD;
+        currentCD = GetMaxCD();
         while (currentCD > 0f)
         {
             currentCD -= Time.deltaTime;

@@ -7,7 +7,7 @@ public class XPController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag("Player")) return;
-        other.GetComponent<PlayerLvlController>().AddXP(value);
+        GameObject.FindAnyObjectByType<PlayerLvlController>().AddXP(value);
         Destroy(gameObject);
     }
 }

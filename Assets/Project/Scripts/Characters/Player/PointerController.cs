@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EventManager;
 
 public class PointerController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PointerController : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] private bool resetPointer;
     [SerializeField] private bool IsStrafe;
+
+    bool stopGame;
 
     private void Start()
     {
@@ -41,11 +44,14 @@ public class PointerController : MonoBehaviour
 
     private void Update()
     {
+        if (stopGame) return;
+
         FollowPlayer();
         SetTargetGround();
         if (PointCursor) PointToCursor();
         else PointToFoward();
     }
+    void OnStopGame(bool stop) => stopGame = stop;
 
     private void SetPointCursor(bool value)
     {

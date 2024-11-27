@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static EventManager;
 
 
 
@@ -34,6 +35,8 @@ public class SpawnerEnemyManager : MonoBehaviour
 
     public int i = 0;
 
+    bool stopGame;
+
     void Start()
     {
         floor = GameObject.Find("Floor").transform;
@@ -56,6 +59,18 @@ public class SpawnerEnemyManager : MonoBehaviour
             i++;
         }
     }
+
+    private void OnEnable()
+    {
+        EventManager.Events.OnStopGame += OnStopGame;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Events.OnStopGame -= OnStopGame;
+    }
+
+    void OnStopGame(bool stop) => stopGame = stop;
 
     private void SortEnemies()
     {
@@ -82,6 +97,7 @@ public class SpawnerEnemyManager : MonoBehaviour
     {
         while (true)
         {
+            if (stopGame) continue;
             for (int n = 0; n <= Random.Range(1, basicEnemies[index].spawnRate); n++)
             {
                 Vector3 spawnPos = SpawnPos();
