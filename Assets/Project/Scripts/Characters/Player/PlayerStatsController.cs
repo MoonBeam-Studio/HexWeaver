@@ -8,12 +8,12 @@ public class PlayerStatsController : MonoBehaviour
     public static PlayerStatsController Stats { get; private set; }
     private void Awake() => Stats = this;
 
-    public int speed;
+    public float speed;
     public int size;
     public float attack, attackSpeed;
     public int critRate;
-    [Range(1, 2)] public float critDamage;
-    [Range(.5f, 1)] public float basicCooldown, ultimateCooldown;
+    public float critDamage;
+    public float basicCooldown, ultimateCooldown;
     public float pickUpRange;
     public int maxHealth, currrentHealth;
     public float healthRegen;
@@ -22,7 +22,7 @@ public class PlayerStatsController : MonoBehaviour
 
     [SerializeField] PlayerStats playerBaseStats;
 
-    private int savedSpeed;
+    private float savedSpeed;
 
     private void Start()
     {

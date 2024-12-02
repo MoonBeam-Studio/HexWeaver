@@ -2803,7 +2803,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578692588
 MonoBehaviour:
@@ -2825,7 +2825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cc9d939297540024d9b1dfb35c8c42b1, type: 3}
+  m_Sprite: {fileID: -1341189835, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3778,12 +3778,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764661307}
         m_TargetAssemblyTypeName: LvLUIController, Assembly-CSharp
-        m_MethodName: HideUI
-        m_Mode: 1
+        m_MethodName: SelectStat
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4060,8 +4060,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764661307}
         m_TargetAssemblyTypeName: LvLUIController, Assembly-CSharp
-        m_MethodName: HideUI
-        m_Mode: 1
+        m_MethodName: SelectStat
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5150,19 +5150,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764661307}
         m_TargetAssemblyTypeName: LvLUIController, Assembly-CSharp
-        m_MethodName: HideUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 655844090}
-        m_TargetAssemblyTypeName: Lean.Transition.LeanManualAnimation, LeanTransition
-        m_MethodName: BeginTransitions
+        m_MethodName: SelectAbility
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5856,7 +5844,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1406229820}
         m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
-        m_MethodName: OnUltimare
+        m_MethodName: OnUltimate
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6619,7 +6607,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581955041
 MonoBehaviour:
@@ -6641,7 +6629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cc9d939297540024d9b1dfb35c8c42b1, type: 3}
+  m_Sprite: {fileID: -1341189835, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6730,7 +6718,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604280401
 MonoBehaviour:
@@ -6752,7 +6740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cc9d939297540024d9b1dfb35c8c42b1, type: 3}
+  m_Sprite: {fileID: -1341189835, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7296,6 +7284,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 1443954622}
   stats: []
+  ability:
+    ID: 
+    Lvl: 0
+    icon: {fileID: 0}
   statsUI:
   - {fileID: 914826369}
   - {fileID: 876633623}
@@ -7344,6 +7336,19 @@ MonoBehaviour:
   - ID: EXPGain
     Name: XP Gain
     value: 0.5
+  Abilities:
+  - ID: Attack
+    Lvl: 1
+    icon: {fileID: 21300000, guid: 87bdda3bd79a2fb409eaf12c405e789a, type: 3}
+  - ID: Ability1
+    Lvl: 0
+    icon: {fileID: 21300000, guid: 04e669f90549da44b8ff100296e769de, type: 3}
+  - ID: Ability2
+    Lvl: 0
+    icon: {fileID: 21300000, guid: ee9fa03a25858694a91eb68967fdd925, type: 3}
+  - ID: Ultimate
+    Lvl: 0
+    icon: {fileID: 21300000, guid: 4e73be277b3d39d47ad55e1b047d7d44, type: 3}
   playerLvL: 1
   currentXP: 0
   XPtoLevelUp: 0
@@ -7994,12 +7999,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1764661307}
         m_TargetAssemblyTypeName: LvLUIController, Assembly-CSharp
-        m_MethodName: HideUI
-        m_Mode: 1
+        m_MethodName: SelectStat
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8359,9 +8364,9 @@ MonoBehaviour:
   proyectile: {fileID: 3018002454190575463, guid: 45f15043417cb0848935f2ffa0d627e6,
     type: 3}
   AttackLvl: 1
-  Ability1LvL: 2
-  Ability2LvL: 3
-  UltimateLvL: 5
+  Ability1LvL: 0
+  Ability2LvL: 0
+  UltimateLvL: 0
   attackCount: 0
 --- !u!114 &1975316340
 MonoBehaviour:
@@ -8427,7 +8432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundPointer: {fileID: 1092455799}
   VFX: {fileID: 161766660727748596, guid: 05ce920d629922a4eb4795ef7494ce5c, type: 3}
-  baseDamage: 0.75
+  baseDamage: 1.5
   effectRadius: 5
   debuffDuration: 2
   IsPassive: 0
@@ -8899,74 +8904,6 @@ MonoBehaviour:
   mapSize: {x: 0, y: 0}
   CanSpawn: 1
   i: 0
---- !u!1001 &5442389938219752712
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4834076377397953645, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8974182106815418758, guid: bd119efad09da424cb8e29b81f434a81,
-        type: 3}
-      propertyPath: m_Name
-      value: Ice Explosion
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bd119efad09da424cb8e29b81f434a81, type: 3}
 --- !u!1001 &7043754989507904148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9062,7 +8999,6 @@ SceneRoots:
   - {fileID: 7043754989507904148}
   - {fileID: 764007634}
   - {fileID: 248370847}
-  - {fileID: 5442389938219752712}
   - {fileID: 1331065448}
   - {fileID: 1443954626}
   - {fileID: 825784709}

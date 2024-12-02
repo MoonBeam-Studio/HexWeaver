@@ -14,4 +14,10 @@ public interface IMagicBase
     int[] GetLevels();
     float[] GetCDs();
     float[] GetMaxCDs();
+
+    void UnlockAbility1();
+    void UnlockAbility2();
+    void UnlockUltimate();
+
+    void LevelUp(int id);
 }

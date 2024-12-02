@@ -85,6 +85,7 @@ public class IceMagicAbility1 : MonoBehaviour
         while (currentCD > 0f)
         {
             currentCD -= Time.deltaTime;
+            if (currentCD < 0f) currentCD = 0f;
             yield return null;
         }
         OnCooldown = false;

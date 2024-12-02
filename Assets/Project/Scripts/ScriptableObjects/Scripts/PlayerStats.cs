@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStats", menuName = "Stats/Player", order = 0)]
 public class PlayerStats : ScriptableObject
 {
-    public int Speed = 5;
+    public float Speed = 5;
     public int Size = 1;
     public float Attack = 5, AttackSpeed = .5f;
     public int CritRate = 25;

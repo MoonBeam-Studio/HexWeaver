@@ -17,6 +17,9 @@ public class IceMagicAbility2 : MonoBehaviour
     private EventManager EventManager;
     public float currentCD { get; private set; }
 
+    //Debug
+    bool showArea;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +47,7 @@ public class IceMagicAbility2 : MonoBehaviour
 
     private void EnemyDied(Transform _enemyTransform, StatusEnum _enemyStatus)
     {
+        Debug.LogWarning("Abilty2 activation");
         enemyStatus = _enemyStatus;
         enemyTransform = _enemyTransform;
 
@@ -74,7 +78,6 @@ public class IceMagicAbility2 : MonoBehaviour
     private void Level3()
     {
         if (enemyStatus != StatusEnum.Frost) return;
-
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
@@ -88,7 +91,6 @@ public class IceMagicAbility2 : MonoBehaviour
     private void Level4()
     {
         if (enemyStatus != StatusEnum.Frost) return;
-
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
@@ -102,7 +104,6 @@ public class IceMagicAbility2 : MonoBehaviour
     private void Level5()
     {
         if (enemyStatus != StatusEnum.Frost) return;
-
         GameObject vfx = Instantiate(explosionVFX, enemyTransform.position, Quaternion.Euler(Vector3.zero));
         StartCoroutine(destroyVFX(vfx));
         Collider[] hitEnemies = Physics.OverlapSphere(enemyTransform.position, explosionRadius, enemyLayer);
@@ -134,5 +135,10 @@ public class IceMagicAbility2 : MonoBehaviour
         Destroy(vfx);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(enemyTransform.position, explosionRadius);
+    }
 
 }

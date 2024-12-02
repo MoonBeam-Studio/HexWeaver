@@ -109,5 +109,30 @@ public class IceMagicBase : MonoBehaviour, IMagicBase
     {
         AbilitiesActivated = enabled;
     }
+    
+    public void UnlockAbility1() => Ability1LvL = 1;
+    public void UnlockAbility2() => Ability2LvL = 1;
+    public void UnlockUltimate() => UltimateLvL = 1;
 
+    public List<int> GetLvls()
+    {
+        List<int> lvls = new();
+        lvls.Add(AttackLvl);
+        lvls.Add(Ability1LvL);
+        lvls.Add(Ability2LvL);
+        lvls.Add(UltimateLvL);
+        return lvls;
+    }
+
+   public void LevelUp(int id)
+    {
+        switch (id)
+        {
+            case 0: AttackLvl++; break;
+            case 1: Ability1LvL++; break;
+            case 2: Ability2LvL++; break;
+            case 3: UltimateLvL++; break;
+            default: break;
+        }
+    }
 }

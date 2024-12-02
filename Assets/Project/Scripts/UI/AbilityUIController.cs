@@ -50,8 +50,6 @@ public class AbilityUIController : MonoBehaviour
         float[] currentCDs = magic.GetCDs();
         float[] maxCDs = magic.GetMaxCDs();
 
-        Debug.Log($"Abilty1 CD:{currentCDs[0]/maxCDs[0]}");
-
         if (currentCDs[0] > 0) ability1CD.SetActive(true);
         else ability1CD.SetActive(false);
         if (currentCDs[1] > 0) ability2CD.SetActive(true);
@@ -60,13 +58,13 @@ public class AbilityUIController : MonoBehaviour
         else ultimateCD.SetActive(false);
 
         ability1CD.GetComponent<Image>().fillAmount = currentCDs[0] / maxCDs[0];
-        ability1CD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Math.Round(currentCDs[0],2).ToString();
+        ability1CD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentCDs[0]).ToString();
 
         ability2CD.GetComponent<Image>().fillAmount = currentCDs[1] / maxCDs[1];
-        ability2CD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Math.Round(currentCDs[1], 2).ToString();
+        ability2CD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentCDs[1]).ToString();
 
         ultimateCD.GetComponent<Image>().fillAmount = currentCDs[2] / maxCDs[2];
-        ultimateCD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Math.Round(currentCDs[2], 2).ToString();
+        ultimateCD.transform.Find("CD_Time").GetComponent<TextMeshProUGUI>().text = Mathf.Ceil(currentCDs[2]).ToString();
 
     }
 
