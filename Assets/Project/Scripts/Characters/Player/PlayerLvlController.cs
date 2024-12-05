@@ -16,6 +16,8 @@ public class AbilityCardUI
     public string ID;
     public int Lvl;
     public Sprite icon;
+    public string name;
+    public string description;
 }
 public class PlayerLvlController : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class PlayerLvlController : MonoBehaviour
 
     public List<StatsUI> Stats = new();
     public List<AbilityCardUI> Abilities = new();
+    public MagicData magicData;
     [SerializeField] int playerLvL, currentXP, XPtoLevelUp;
 
     private IMagicBase magicBase;
@@ -33,6 +36,10 @@ public class PlayerLvlController : MonoBehaviour
         XPtoLevelUp = ((int)Mathf.Pow(playerLvL, 2)) + 5;
         UIController = GetComponent<LvLUIController>();
         magicBase = GameObject.Find("AttacksAndAbilities").GetComponent<IMagicBase>();
+        
+        Abilities[0].name = magicData.AutoAttackData.Name;
+        Abilities[0].icon = magicData.Icons.AutoAttack[0];
+
     }
 
     public void AddXP(int value)
@@ -100,6 +107,30 @@ public class PlayerLvlController : MonoBehaviour
             if (Abilities[n].Lvl != 0 && Abilities[n].Lvl < 5) generate = false;
         }
         Debug.LogWarning($"Generating ability: {Abilities[n].ID}");
+
+        string _description = "", _name = "";
+        switch (Abilities[n].ID)
+        {
+            case "Attack": 
+                _description = magicData.AutoAttackData.DescriptionList[Abilities[n].Lvl-1].ToString(); 
+                _name = magicData.AutoAttackData.Name.ToString();
+                break;
+            case "Ability1":
+                _description = magicData.Ability1Data.DescriptionList[Abilities[n].Lvl-1].ToString();
+                _name = magicData.Ability1Data.Name.ToString();
+                break;
+            case "Ability2": 
+                _description = magicData.Ability2Data.DescriptionList[Abilities[n].Lvl-1].ToString();
+                _name = magicData.Ability2Data.Name.ToString();
+                break;
+            case "Ultimate": 
+                _description = magicData.UltimateData.DescriptionList[Abilities[n].Lvl-1].ToString();
+                _name = magicData.UltimateData.Name.ToString();
+                break;
+        }
+        Abilities[n].name = _name;
+        Abilities[n].description = _description;
+
         UIController.AddAbilityToUI(Abilities[n]);
     }
 }

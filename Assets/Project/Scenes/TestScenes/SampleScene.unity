@@ -615,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2419,7 +2419,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2498,7 +2498,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2773,7 +2773,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4094,7 +4094,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4930,7 +4930,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5189,7 +5189,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6041,6 +6041,8 @@ MonoBehaviour:
     ID: 
     Lvl: 0
     icon: {fileID: 0}
+    name: 
+    description: 
   statsUI:
   - {fileID: 914826369}
   - {fileID: 876633623}
@@ -6093,15 +6095,24 @@ MonoBehaviour:
   - ID: Attack
     Lvl: 1
     icon: {fileID: 21300000, guid: 87bdda3bd79a2fb409eaf12c405e789a, type: 3}
+    name: 
+    description: 
   - ID: Ability1
     Lvl: 0
     icon: {fileID: 21300000, guid: 04e669f90549da44b8ff100296e769de, type: 3}
+    name: 
+    description: 
   - ID: Ability2
     Lvl: 0
     icon: {fileID: 21300000, guid: ee9fa03a25858694a91eb68967fdd925, type: 3}
+    name: 
+    description: 
   - ID: Ultimate
     Lvl: 0
     icon: {fileID: 21300000, guid: 4e73be277b3d39d47ad55e1b047d7d44, type: 3}
+    name: 
+    description: 
+  magicData: {fileID: 11400000, guid: 51e6f02362b37b8499abb85e7bfdcf0f, type: 2}
   playerLvL: 1
   currentXP: 0
   XPtoLevelUp: 0
@@ -6923,7 +6934,7 @@ PrefabInstance:
     - target: {fileID: 7671755737178386899, guid: 3e9713454ee8e094eb230defad25e093,
         type: 3}
       propertyPath: value
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7299,7 +7310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2073137953
 Transform:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public class LvLUIController : MonoBehaviour
     public void AddAbilityToUI(AbilityCardUI _ability)
     {
         ability = _ability;
+
     }
 
     /*
@@ -97,6 +98,8 @@ public class LvLUIController : MonoBehaviour
         yield return null;
         abilityUI.Find("Icon").GetComponent<Image>().sprite = ability.icon;
         abilityUI.Find("AbilityLVL").GetComponent<TextMeshProUGUI>().text = (ability.Lvl + 1).ToString();
+        abilityUI.Find("Title").GetComponent<TextMeshProUGUI>().text = ability.name;
+        abilityUI.Find("Description").GetComponent<TextMeshProUGUI>().text = ability.description;
 
     }
 
