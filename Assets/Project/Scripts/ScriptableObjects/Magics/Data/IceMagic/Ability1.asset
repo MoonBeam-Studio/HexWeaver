@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7155ff017bade43a0f1ad4ea0bedc0, type: 3}
+  m_Name: Ability1
+  m_EditorClassIdentifier: 
+  Name: Invoke Hail
+  DescriptionList:
+  - Throws ice from the sky to the cursor, dealing damage(150% attack) in an area
+    (5m)
+  - Applies Frost to hit enemies
+  - Hit enemies are slowed (70% 2s)
+  - The area grows (10m)
+  - The hit enemies are stunned instead

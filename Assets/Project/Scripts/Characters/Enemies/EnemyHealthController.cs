@@ -24,6 +24,7 @@ public class EnemyHealthController : MonoBehaviour
 
     private IEnumerator Die()
     {
+        GetComponent<EnemyXPController>().SpawnXp();
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }

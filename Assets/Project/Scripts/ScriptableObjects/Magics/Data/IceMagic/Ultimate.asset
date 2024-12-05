@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7155ff017bade43a0f1ad4ea0bedc0, type: 3}
+  m_Name: Ultimate
+  m_EditorClassIdentifier: 
+  Name: Healing Haze
+  DescriptionList:
+  - The player becomes invulnerable and can attack (3s), nearby enemies (20m) are
+    slowed (60%, 5s) and get Frost(5s)
+  - Player heals when invulnearable (10health/s)
+  - Enemies are stunned instead
+  - Player can Attack but not use abilities
+  - Really close enemies(10m) are hurt (300% attack)
