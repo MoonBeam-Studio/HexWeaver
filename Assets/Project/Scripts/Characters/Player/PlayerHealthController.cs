@@ -46,4 +46,11 @@ public class PlayerHealthController : MonoBehaviour
         PlayerMovementController playerMovement = GetComponent<PlayerMovementController>();
         playerMovement.enabled = false;
     }
+
+    public void Heal(int healthValue)
+    {
+        playerStatsController.currrentHealth += healthValue;
+
+        if(playerStatsController.currrentHealth > playerStatsController.maxHealth) playerStatsController.currrentHealth = playerStatsController.maxHealth;
+    }
 }
